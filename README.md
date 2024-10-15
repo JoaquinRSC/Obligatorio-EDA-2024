@@ -1,15 +1,15 @@
 # Obligatorio-EDA-2024
 
-## Overview
-
-This project is related to a C program, likely focused on handling business-related logic (based on the file names `empresa.c` and `empresa.h`). The project is structured to be compiled using a `makefile`, and it includes several header and source files to define and implement functionality.
-
 ## Project Structure
 
 - **makefile**: Automates the build process, containing instructions to compile the project and generate the executable.
 - **definiciones.h**: Contains macro definitions, constants, or other global definitions used across the project.
 - **empresa.h**: Defines the structures and function prototypes related to the business logic.
 - **empresa.c**: Implements the functions declared in `empresa.h`, likely focusing on managing business-related operations.
+- **persona.h**: Defines the structure and prototypes for handling personnel-related operations.
+- **persona.c**: Implements the functions declared in `persona.h`, managing personnel data.
+- **cargo.h**: Defines the structure and prototypes for handling job roles within the organization.
+- **cargo.c**: Implements the functions declared in `cargo.h`, managing job-related operations.
 - **main.c**: Contains the `main()` function, which serves as the entry point of the program.
 
 ## How to Build
