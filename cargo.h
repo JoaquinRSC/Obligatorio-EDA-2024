@@ -1,7 +1,15 @@
 #ifndef CARGO_H
 #define CARGO_H
 
-#include "empresa.h" 
+#include "empresa.h"
+#include "persona.h"  
+
+typedef struct nodo_cargo {
+    Cadena nombre;
+    struct nodo_cargo* siguiente;
+
+    Persona* personas;
+} nodo_cargo; 
 
 TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo);
 // Insertar un nuevo cargo como dependiente de otro ya existente.
