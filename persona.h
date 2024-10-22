@@ -2,6 +2,7 @@
 #define PERSONA_H
 
 #include "empresa.h"  
+#include "definiciones.h"
 
 typedef struct Persona {
     Cadena nombre;
@@ -28,9 +29,5 @@ TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci);
 TipoRet ListarPersonas(Empresa e, Cadena cargo);
 // Dado un cargo listar las personas asignadas al mismo ordenadas por fecha de alta a la empresa.
 // Lista todas las personas asignadas al cargo de nombre cargo.
-
-TipoRet ListarSuperCargos(Empresa e, Cadena cargo);
-// Dado un cargo listar los cargos que lo anteceden.
-// Lista todas los cargos que anteceden, en la jerarquía, al cargo de nombre cargo.
 
 #endif

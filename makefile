@@ -16,3 +16,4 @@ cargo.o: cargo.h cargo.c
 clean:
 	rm *.o
 	rm main
+	

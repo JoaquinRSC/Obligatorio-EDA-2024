@@ -2,7 +2,8 @@
 #define CARGO_H
 
 #include "empresa.h"
-#include "persona.h"  
+#include "persona.h"
+#include "definiciones.h"
 
 typedef struct nodo_cargo {
     Cadena nombre;
@@ -11,7 +12,7 @@ typedef struct nodo_cargo {
     Persona* personas;
 } nodo_cargo; 
 
-TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo);
+TipoRet NuevoCargo(nodo_empresa *&e, Cadena cargoPadre, Cadena nuevoCargo);
 // Insertar un nuevo cargo como dependiente de otro ya existente.
 // El nuevo cargo no debe existir en el sistema.
 
@@ -30,5 +31,9 @@ TipoRet ListarJerarquia(Empresa e);
 // Listar todos los cargos de la empresa en orden jerárquico.
 // Lista todos los cargos de la empresa ordenados por nivel jerárquico e indentados
 // según se muestra el ejemplo de la letra.
+
+TipoRet ListarSuperCargos(Empresa e, Cadena cargo);
+// Dado un cargo listar los cargos que lo anteceden.
+// Lista todas los cargos que anteceden, en la jerarquía, al cargo de nombre cargo.
 
 #endif
