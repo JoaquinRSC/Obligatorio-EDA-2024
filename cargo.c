@@ -5,6 +5,50 @@
 
 using namespace std;
 
+
+struct nodo_cargos{
+    Cadena nombre;
+    Cargos ph;
+    Cargos sh;
+};
+
+Cargos CrearCargos(Cadena cargo){
+// Crea la estructura de Cargos con el cargo de mayor jerarquia.
+    Cargos cs = new(nodo_cargos);
+    cs->nombre = new(char[MAX_COMANDO]);
+    strcpy(cs->nombre, cargo);
+    cs->ph = NULL;
+    cs->sh = NULL;
+    return cs;
+}
+
+void ListarCargosJerarquicamenteAux(Cargos cs, int tabs){
+// Imprime los cargos tabulados segun su jerarquia.
+    if (cs != NULL){
+        for(int i=0; i<tabs; i++)
+            cout << "\t";
+        cout << cs->nombre << endl;
+        ListarCargosJerarquicamenteAux(cs->ph, tabs + 1);
+        ListarCargosJerarquicamenteAux(cs->sh, tabs);
+    }
+}
+
+
+void ListarCargosJerarquicamente(Cargos cs){
+// Imprime os cargos jerarquicamente.
+    ListarCargosJerarquicamenteAux(cs, 1);
+}
+
+
+TipoRet InsertarCargo(e->cs, cargoPadre, nuevoCargo){
+// Inserta un nuevoCargo como hijo de cargoPadre.
+// Si padre no existe o nuevoCargo ya esta en la estructura retorna ERROR.
+
+
+    return NO_IMPLEMENTADA;
+}
+
+/*
 TipoRet NuevoCargo(Empresa &e, Cadena cargoPadre, Cadena nuevoCargo) {
 // Insertar un nuevo cargo como dependiente de otro ya existente.
 // El nuevo cargo no debe existir en el sistema.
@@ -70,7 +114,7 @@ TipoRet ListarCargosAlf(Empresa e) {
 // Listar todos los cargos ordenados alfabéticamente.
 // Lista todos los cargos de la empresa ordenados alfabéticamente por nombre del cargo.
     if (e == nullptr) {
-        std::cout << "No hay cargos en la empresa.\n";
+        cout << "No hay cargos en la empresa.\n";
         return ERROR;
     }
 
@@ -91,10 +135,10 @@ TipoRet ListarCargosAlf(Empresa e) {
         }
     } while (swapped);
 
-    std::cout << "Cargos ordenados alfabéticamente:\n";
+    cout << "Cargos ordenados alfabéticamente:\n";
     Empresa p = e;
     while (p != nullptr) {
-        std::cout << p->cargo << std::endl;
+        cout << p->cargo << endl;
         p = p->siguiente;
     }
 
@@ -106,20 +150,20 @@ TipoRet ListarJerarquia(Empresa e) {
 // Lista todos los cargos de la empresa ordenados por nivel jerárquico e indentados
 // según se muestra el ejemplo de la letra.
     if (e == nullptr) {
-        std::cout << "No hay cargos en la jerarquía.\n";
+        cout << "No hay cargos en la jerarquía.\n";
         return ERROR;
     }
 
-    std::cout << "Cargos en orden jerárquico:\n";
+    cout << "Cargos en orden jerárquico:\n";
 
     nodo_empresa* actual = e;
     int nivel = 0;
 
     while (actual != nullptr) {
         for (int i = 0; i < nivel; ++i) {
-            std::cout << "    "; 
+            cout << "    "; 
         }
-        std::cout << actual->cargo << std::endl;
+        cout << actual->cargo << endl;
 
         actual = actual->siguiente;
 
@@ -133,7 +177,7 @@ TipoRet ListarSuperCargos(Empresa e, Cadena cargo) {
 // Dado un cargo listar los cargos que lo anteceden.
 // Lista todas los cargos que anteceden, en la jerarquía, al cargo de nombre cargo.
     if (e == nullptr) {
-        std::cout << "No hay cargos en la empresa.\n";
+        cout << "No hay cargos en la empresa.\n";
         return ERROR;
     }
 
@@ -151,17 +195,18 @@ TipoRet ListarSuperCargos(Empresa e, Cadena cargo) {
     }
 
     if (!encontrado) {
-        std::cout << "Cargo no encontrado.\n";
+        cout << "Cargo no encontrado.\n";
         return ERROR;
     }
 
-    std::cout << "Cargos que anteceden a " << cargo << ":\n";
+    cout << "Cargos que anteceden a " << cargo << ":\n";
 
     actual = e; 
     while (actual != antecesor) { 
-        std::cout << actual->cargo << std::endl;
+        cout << actual->cargo << endl;
         actual = actual->siguiente; 
     }
 
     return OK;
 }
+*/

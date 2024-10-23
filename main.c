@@ -7,8 +7,6 @@
 
 #include "definiciones.h"
 #include "empresa.h"
-#include "persona.h"
-#include "cargo.h"
 #include <string.h>
 #include <stdio.h>
 #include <iostream>
