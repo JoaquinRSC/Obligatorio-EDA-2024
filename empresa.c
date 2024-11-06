@@ -18,6 +18,7 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo) {
 }
 
 TipoRet EliminarOrg(Empresa &e) {
+    // Eliminar el organigrama, elimina toda la estructura del organigrama, liberando la memoria asignada.
     DestruirCargos(e->cs);
     delete e;               
     e = NULL;            

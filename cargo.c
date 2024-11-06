@@ -40,5 +40,23 @@ void ListarCargosJerarquicamente(Cargos cs) {
 TipoRet InsertarCargo(Cargos cs, Cadena cargoPadre, Cadena nuevoCargo) {
     // Inserta un nuevoCargo como hijo de cargoPadre.
     // Si cargoPadre no existe o nuevoCargo ya está en la estructura, retorna ERROR.
-    return NO_IMPLEMENTADA;
+    while (cs != NULL) {
+        if (strcmp(cs->nombre, cargoPadre) == 0) {
+            Cargos temp = cs->ph;
+            while (temp != NULL) {
+                if (strcmp(temp->nombre, nuevoCargo) == 0) {
+                    return ERROR;
+                }
+                temp = temp->sh;
+            }
+
+            Cargos nuevo = CrearCargos(nuevoCargo);
+            nuevo->sh = cs->ph;  
+            cs->ph = nuevo;      
+            return OK;
+        }
+        cs = cs->sh;  
+    }
+
+    return ERROR;
 }
