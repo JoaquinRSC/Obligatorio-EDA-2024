@@ -5,28 +5,16 @@
 #include "persona.h"
 #include "definiciones.h"
 
-typedef struct nodo_cargos * Cargos;
+typedef struct nodo_cargos *Cargos;
 
 Cargos CrearCargos(Cadena cargo);
-// Crea la estructura de Cargos con el cargo de mayor jerarquia.
-
+// Crea la estructura de Cargos con el cargo de mayor jerarquía.
 
 void ListarCargosJerarquicamente(Cargos cs);
-// Imprime os cargos jerarquicamente.
+// Imprime los cargos jerárquicamente.
 
-
-TipoRet InsertarCargo(e->cs, cargoPadre, nuevoCargo);
+TipoRet InsertarCargo(Cargos cs, Cadena cargoPadre, Cadena nuevoCargo);
 // Inserta un nuevoCargo como hijo de cargoPadre.
-// Si padre no existe o nuevoCargo ya esta en la estructura retorna ERROR.
+// Si cargoPadre no existe o nuevoCargo ya está en la estructura, retorna ERROR.
 
-
-
-/*
-typedef struct nodo_cargo {
-    Cadena nombre;
-    struct nodo_cargo* siguiente;
-
-    Persona* personas;
-} nodo_cargo; 
-*/
 #endif
