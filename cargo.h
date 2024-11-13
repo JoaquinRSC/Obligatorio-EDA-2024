@@ -17,4 +17,10 @@ TipoRet InsertarCargo(Cargos cs, Cadena cargoPadre, Cadena nuevoCargo);
 // Inserta un nuevoCargo como hijo de cargoPadre.
 // Si cargoPadre no existe o nuevoCargo ya está en la estructura, retorna ERROR.
 
+void DestruirCargos(Cargos &cs);
+
+TipoRet EliminarCargoDeJerarquia(Cargos &cs, Cadena cargo);
+
+TipoRet ListarCargosAlf(Cargos cs);
+
 #endif

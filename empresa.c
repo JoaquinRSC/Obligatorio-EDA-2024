@@ -1,5 +1,6 @@
 #include "empresa.h"
 #include "cargo.h"
+#include "definiciones.h"
 #include <iostream>
 #include <cstring>
 
@@ -19,9 +20,13 @@ TipoRet CrearOrg(Empresa &e, Cadena cargo) {
 
 TipoRet EliminarOrg(Empresa &e) {
     // Eliminar el organigrama, elimina toda la estructura del organigrama, liberando la memoria asignada.
+    if (e == NULL) return ERROR;
+
     DestruirCargos(e->cs);
-    delete e;               
-    e = NULL;            
+
+    delete e;
+    e = NULL;
+
     return OK;
 }
 
@@ -37,13 +42,13 @@ TipoRet EliminarCargo(Empresa &e, Cadena cargo) {
     // En otro caso, la operación quedará sin efecto.
     // Si el cargo a eliminar posee subcargos, éstos deberán ser eliminados también,
     // así como las personas asociadas a cada uno de los cargos suprimidos.
-    return NO_IMPLEMENTADA;
+    return EliminarCargoDeJerarquia(e->cs, cargo);
 }
 
 TipoRet ListarCargosAlf(Empresa &e) {
     // Listar todos los cargos ordenados alfabéticamente.
     // Lista todos los cargos de la empresa ordenados alfabéticamente por nombre del cargo.
-    return NO_IMPLEMENTADA;
+    return ListarCargosAlf(e->cs);
 }
 
 TipoRet ListarJerarquia(Empresa &e) {
