@@ -21,6 +21,9 @@ void DestruirCargos(Cargos &cs);
 
 TipoRet EliminarCargoDeJerarquia(Cargos &cs, Cadena cargo);
 
-TipoRet ListarCargosAlf(Cargos cs);
+void ListarCargosAlf(Cargos cs);
+
+// Función auxiliar para buscar los ancestros de un cargo
+bool BuscarPadres(Cargos cs, Cadena cargo, bool& encontrado);
 
 #endif

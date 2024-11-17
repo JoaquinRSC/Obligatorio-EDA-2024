@@ -1,5 +1,6 @@
 #include "empresa.h"
 #include "cargo.h"
+#include "persona.h"
 #include "definiciones.h"
 #include <iostream>
 #include <cstring>
@@ -48,7 +49,8 @@ TipoRet EliminarCargo(Empresa &e, Cadena cargo) {
 TipoRet ListarCargosAlf(Empresa &e) {
     // Listar todos los cargos ordenados alfabéticamente.
     // Lista todos los cargos de la empresa ordenados alfabéticamente por nombre del cargo.
-    return ListarCargosAlf(e->cs);
+    ListarCargosAlf(e->cs);
+    return OK;
 }
 
 TipoRet ListarJerarquia(Empresa &e) {
@@ -60,9 +62,13 @@ TipoRet ListarJerarquia(Empresa &e) {
 }
 
 TipoRet ListarSuperCargos(Empresa &e, Cadena cargo) {
-    // Dado un cargo listar los cargos que lo anteceden.
-    // Lista todas los cargos que anteceden, en la jerarquía, al cargo de nombre cargo.
-    return NO_IMPLEMENTADA;
+    bool encontrado = false;
+    // Llamamos a la función de cargo.c que busca los ancestros
+    bool resultado = BuscarPadres(e->cs, cargo, encontrado);
+    if (!encontrado) {
+        cout << "Cargo no encontrado en la jerarquía." << endl;
+    }
+    return OK;
 }
 
 TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci) {
@@ -70,14 +76,14 @@ TipoRet AsignarPersona(Empresa &e, Cadena cargo, Cadena nom, Cadena ci) {
     // Asigna una persona de nombre nom y cédula de identidad ci al cargo cargo
     // siempre que el cargo exista en la empresa y esa persona no esté asignada a
     // ese u otro cargo, en caso contrario la operación quedará sin efecto.
-    return NO_IMPLEMENTADA;
+    return AsignarPersona(e, cargo, nom, ci);
 }
 
 TipoRet EliminarPersona(Empresa &e, Cadena ci) {
     // Eliminar una persona de un cargo.
     // Elimina una persona de cédula ci de la empresa siempre y cuando la misma exista,
     // en caso contrario la operación quedará sin efecto.
-    return NO_IMPLEMENTADA;
+    return EliminarPersona(e, ci);
 }
 
 TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci) {
@@ -85,11 +91,11 @@ TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci) {
     // Reasigna una persona de la empresa de cédula ci al nuevo cargo de nombre cargo
     // siempre que el cargo exista en la empresa y esa persona no esté ya asignada a
     // dicho cargo. En caso contrario la operación quedará sin efecto.
-    return NO_IMPLEMENTADA;
+    return ReasignarPersona(e, cargo, ci);
 }
 
 TipoRet ListarPersonas(Empresa &e, Cadena cargo) {
     // Dado un cargo listar las personas asignadas al mismo ordenadas por fecha de alta a la empresa.
     // Lista todas las personas asignadas al cargo de nombre cargo.
-    return NO_IMPLEMENTADA;
+    return ListarPersonas(e, cargo);
 }

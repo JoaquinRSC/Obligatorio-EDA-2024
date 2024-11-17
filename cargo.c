@@ -10,6 +10,7 @@ struct nodo_cargos {
     Cadena nombre;
     Cargos ph;
     Cargos sh;
+    Personas personas;
 };
 
 Cargos CrearCargos(Cadena cargo) {
@@ -125,7 +126,7 @@ void trim(Cadena& str) {
 // Función auxiliar para contar el número de cargos
 int ContarCargos(Cargos cs) {
     int count = 0;
-    if (cs != NULL) {
+    if (cs != nullptr) {
         // Contamos el cargo actual
         count++;
 
@@ -139,8 +140,8 @@ int ContarCargos(Cargos cs) {
 }
 
 // Función auxiliar para listar los cargos en orden alfabético
-void ListarCargosAlfAux(Cargos cs, Cadena cargos[], int& index) {
-    if (cs != NULL) {
+void ListarCargosAlfAux(Cargos cs, string cargos[], int& index) {
+    if (cs != nullptr) {
         // Agregar el nombre del cargo al arreglo
         cargos[index++] = cs->nombre;
 
@@ -153,22 +154,16 @@ void ListarCargosAlfAux(Cargos cs, Cadena cargos[], int& index) {
 }
 
 // Implementación de la función que lista los cargos en orden alfabético
-TipoRet ListarCargosAlf(Cargos cs) {
+void ListarCargosAlf(Cargos cs) {
     // Contamos el número total de cargos
     int totalCargos = ContarCargos(cs);
 
     // Usamos un arreglo estático para almacenar los nombres de los cargos
-    Cadena cargos[totalCargos];
+    string cargos[totalCargos];
     int index = 0;
 
     // Llamamos a la función auxiliar para llenar el arreglo con los nombres
     ListarCargosAlfAux(cs, cargos, index);
-
-   // Antes de ordenar
-    cout << "Cargos antes de ordenar:" << endl;
-    for (int i = 0; i < totalCargos; i++) {
-        cout << cargos[i] << endl;  // Imprime cada cargo en una nueva línea
-    }
 
     // Ordenamos el arreglo alfabéticamente usando sort
     sort(cargos, cargos + totalCargos);
@@ -178,5 +173,26 @@ TipoRet ListarCargosAlf(Cargos cs) {
     for (int i = 0; i < totalCargos; i++) {
         cout << cargos[i] << endl;  // Imprime cada cargo en una nueva línea
     }
-    return OK;
+}
+
+// Función auxiliar para buscar los ancestros de un cargo e imprimirlos.
+bool BuscarPadres(Cargos cs, Cadena cargo, bool& encontrado) {
+    if (cs == NULL) return false;
+
+    // Primero, buscamos en el cargo actual
+    if (strcmp(cs->nombre, cargo) == 0) {
+        encontrado = true;
+        return true;  // Si encontramos el cargo, retornamos true
+    }
+
+    // Si no es el cargo actual, buscamos en los hijos (ph) o hermanos (sh)
+    if (BuscarPadres(cs->ph, cargo, encontrado)) {
+        if (encontrado) {
+            cout << cs->nombre << endl; // Imprimimos el cargo padre
+            return true; // Si se encontró en los hijos, retornamos true
+        }
+    }
+
+    // Si no se encontró en los hijos, buscamos en los hermanos
+    return BuscarPadres(cs->sh, cargo, encontrado);
 }
