@@ -1,6 +1,5 @@
 #include "empresa.h"
 #include "cargo.h"
-#include "persona.h"
 #include "definiciones.h"
 #include <iostream>
 #include <cstring>
@@ -63,7 +62,6 @@ TipoRet ListarJerarquia(Empresa &e) {
 
 TipoRet ListarSuperCargos(Empresa &e, Cadena cargo) {
     bool encontrado = false;
-    // Llamamos a la función de cargo.c que busca los ancestros
     bool resultado = BuscarPadres(e->cs, cargo, encontrado);
     if (!encontrado) {
         cout << "Cargo no encontrado en la jerarquía." << endl;

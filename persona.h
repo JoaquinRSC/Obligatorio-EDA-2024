@@ -1,7 +1,6 @@
 #ifndef PERSONA_H
 #define PERSONA_H
 
-#include "empresa.h"
 #include "definiciones.h"
 
 typedef struct nodo_personas *Personas;
@@ -26,5 +25,18 @@ TipoRet ReasignarPersona(Empresa &e, Cadena cargo, Cadena ci);
 TipoRet ListarPersonas(Empresa &e, Cadena cargo);
 // Dado un cargo listar las personas asignadas al mismo ordenadas por fecha de alta a la empresa.
 // Lista todas las personas asignadas al cargo de nombre cargo.
+
+// Funciones auxiliares para AsignarPersona y EliminarPersona
+bool BuscarPersonaEnCargo(Cargos cargo, Cadena ci);
+// Verifica si una persona con la cédula dada está asignada a un cargo específico.
+
+Personas CrearPersona(Cadena nom, Cadena ci);
+// Crea un nuevo nodo de tipo Personas con el nombre y cédula proporcionados.
+
+void AgregarPersonaALista(Personas &personas, Cadena nom, Cadena ci);
+// Agrega una persona al final de una lista de personas.
+
+TipoRet EliminarPersonaDeLista(Personas &personas, Cadena ci);
+// Elimina una persona de la lista enlazada de personas dado su número de cédula.
 
 #endif
